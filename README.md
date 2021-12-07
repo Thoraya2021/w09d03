@@ -20,11 +20,9 @@
 ### Installation Packages
 #### To Use React Redux With Your React App, Install It As A Dependency:
 >>> npx create-react-app my-app
-<<<<<<< HEAD
->>> npm install redux
-=======
 >>>
->>>>>>> 3057776d57930a91aa749046dec8b877b7d1380b
+>>> npm install redux
+>>>
 >>> npm install react-redux
 >>> 
 >>>  npm install redux
