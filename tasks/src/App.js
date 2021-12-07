@@ -1,6 +1,7 @@
 import React, { useState} from "react";
 import axios from "axios";
 import './App.css';
+import Tasks from "./components/task"
 
 
 
@@ -72,9 +73,13 @@ console.log(result)
       />
        <br />
       <button onClick={login}>login</button>
-      <br />
+      <br />   
+        <Tasks />
       </div>
+    
     </div>
+
+    
   );
   
   }
