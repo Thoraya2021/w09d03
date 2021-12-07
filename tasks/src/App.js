@@ -7,10 +7,14 @@ import './App.css';
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function App() {
-  //register 
+  //register state
   const [email ,setEmail] =useState("");
   const [password ,setPassword] =useState("");
+  // login state
+  const [logEmail, setLogEmail] = useState("");
+  const [logPassword, setLogPassword] = useState("");
 
+  //register function when i click button sign-in it return response 
   const register =async () => {
 const result= await axios.post(`${BASE_URL}/signup`,{
 email,
@@ -22,6 +26,17 @@ console.log(result)
 }
 
 
+  //register function when i click login button it return response
+  const login =async () => {
+    const result= await axios.post(`${BASE_URL}/login`,{
+    email:logEmail,
+    password:logPassword,
+    
+    })
+    console.log(result)
+    
+    }
+     
   return (
     <div className="App">
       <div className="register">
@@ -38,6 +53,25 @@ console.log(result)
       />
        <br />
       <button onClick={register}>sign-up</button>
+      <br />
+      </div>
+
+
+
+      <div className="login">
+  <input
+        placeholder="email"
+        type="text"
+        onChange={(e) => setLogEmail(e.target.value)}
+      />
+       <br />
+      <input
+        placeholder="password"
+        type="text"
+        onChange={(e) => setLogPassword(e.target.value)}
+      />
+       <br />
+      <button onClick={login}>login</button>
       <br />
       </div>
     </div>
