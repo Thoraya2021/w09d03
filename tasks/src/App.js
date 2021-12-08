@@ -47,7 +47,6 @@ console.log(result)
     
     })
    
-
    const data = {
       user: result.data.result,
       token: result.data.token,

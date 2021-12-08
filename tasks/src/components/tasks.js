@@ -1,8 +1,14 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { logout } from "./../reducers/login";
-import {getAllTasks, addNewTasks, DeleteTasks ,UpdateTasks } from "./../reducers/task";
 import { useDispatch, useSelector } from "react-redux";
+
+import {
+  getAllTasks,
+  addNewTasks,
+  DeleteTasks,
+  UpdateTasks,
+} from "./../reducers/task";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -10,7 +16,7 @@ const Todos = () => {
   const state = useSelector((state) => {
     return state;
   });
-
+  console.log(state, "state");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,14 +29,12 @@ const Todos = () => {
 
   const getTasks = async () => {
     try {
-      const result = await axios.get(
-        `${BASE_URL }/todo/alltodos`,
-        {
-          headers: {
-            Authorization: `Bearer ${state.signIn.token}`,
-          },
-        }
-      );
+      const result = await axios.get(`${BASE_URL}/todo/alltodos`, {
+        headers: {
+          Authorization: `Bearer ${state.signIn.token}`,
+        },
+      });
+      console.log(result);
 
       dispatch(getAllTasks(result.data));
     } catch (error) {
@@ -56,42 +60,33 @@ const Todos = () => {
     }
   };
 
-
   const deletetodo = async (id) => {
     try {
-    await axios.delete(
-      `${BASE_URL}/todo/todos/${id}`,
-      {
+      const result = await axios.delete(`${BASE_URL}/todo/todos/${id}`, {
         headers: {
           Authorization: `Bearer ${state.signIn.token}`,
         },
-      }
-    );
+      });
 
-    dispatch(DeleteTasks(result.data));
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-
-const updateTask = async (id) => {
-  try{
-  await axios.put(
-    `${BASE_URL}/todo/todos${id}`,
-    {
-      headers: {
-        Authorization: `Bearer ${state.signIn.token}`,
-      },
+      dispatch(DeleteTasks(result.data));
+    } catch (error) {
+      console.log(error);
     }
-  );
+  };
 
-  dispatch(UpdateTasks (result.data));
-} catch (error) {
-  console.log(error);
-}
-};
+  const updateTask = async (id) => {
+    try {
+      const result = await axios.put(`${BASE_URL}/todo/todos${id}`, {
+        headers: {
+          Authorization: `Bearer ${state.signIn.token}`,
+        },
+      });
 
+      dispatch(UpdateTasks(result.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -102,7 +97,7 @@ const updateTask = async (id) => {
       <button onClick={addTask}>addtasks</button>
       <button onClick={deletetodo}>addtasks</button>
       <button onClick={updateTask}>addtasks</button>
-         <button onClick={signOut}>logOut</button>
+      <button onClick={signOut}>logOut</button>
     </div>
   );
 };
