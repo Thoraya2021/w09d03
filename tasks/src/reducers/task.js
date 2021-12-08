@@ -13,7 +13,17 @@ const initialState = {
       case "ADD_NEW_TASK": 
     const tasks = [...state.tasks, payload]; //here i take old state and i will change add elements 
         return { tasks }; 
-  
+
+
+        case "DELETE":
+       
+          return {tasks};
+
+          
+        case "UPDATE":
+       
+          return {tasks};
+    
       default:
         return state;
     }
@@ -31,6 +41,22 @@ const initialState = {
   export const addNewTasks = (data) => {
     return {
       type: "ADD_NEW_TASK",
+      payload: data,
+    };
+  };
+
+  
+  export const DeleteTasks = (data) => {
+    return {
+      type: "DELETE",
+      payload: data,
+    };
+  };
+
+  
+  export const UpdateTasks = (data) => {
+    return {
+      type: "UPDATE",
       payload: data,
     };
   };

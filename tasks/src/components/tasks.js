@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { logout } from "./../reducers/login";
-import { getAllTasks, addNewTasks } from "./../reducers/task";
+import {getAllTasks, addNewTasks, DeleteTasks ,UpdateTasks } from "./../reducers/task";
 import { useDispatch, useSelector } from "react-redux";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -58,17 +58,39 @@ const Todos = () => {
 
 
   const deletetodo = async (id) => {
+    try {
     await axios.delete(
       `${BASE_URL}/todo/todos/${id}`,
       {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${state.signIn.token}`,
         },
       }
     );
 
+    dispatch(DeleteTasks(result.data));
+  } catch (error) {
+    console.log(error);
+  }
 };
 
+
+const updateTask = async (id) => {
+  try{
+  await axios.put(
+    `${BASE_URL}/todo/todos${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${state.signIn.token}`,
+      },
+    }
+  );
+
+  dispatch(UpdateTasks (result.data));
+} catch (error) {
+  console.log(error);
+}
+};
 
 
   return (
@@ -79,7 +101,8 @@ const Todos = () => {
         ))}
       <button onClick={addTask}>addtasks</button>
       <button onClick={deletetodo}>addtasks</button>
-      <button onClick={signOut}>logOut</button>
+      <button onClick={updateTask}>addtasks</button>
+         <button onClick={signOut}>logOut</button>
     </div>
   );
 };

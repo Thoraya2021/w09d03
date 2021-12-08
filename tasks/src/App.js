@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import axios from "axios";
 //import Todos from "./components/Task/task";
 import Todos from "./../src/components/tasks";
