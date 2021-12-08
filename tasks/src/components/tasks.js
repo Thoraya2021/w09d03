@@ -89,15 +89,19 @@ const Todos = () => {
   };
 
   return (
-    <div>
+    <div className ="task">
       {state.tasksReducer.tasks.length &&
         state.tasksReducer.tasks.map((item) => (
           <h2 key={item._id}>{item.name}</h2>
         ))}
       <button onClick={addTask}>addtasks</button>
-      <button onClick={deletetodo}>addtasks</button>
-      <button onClick={updateTask}>addtasks</button>
+      <br />
+      <button onClick={deletetodo}>delete tasks</button>
+      <br />
+      <button onClick={updateTask}>update tasks</button>
+      <br />
       <button onClick={signOut}>logOut</button>
+      <br />
     </div>
   );
 };
